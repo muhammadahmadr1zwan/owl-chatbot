@@ -1,0 +1,15 @@
+# Generated database (rebuild with: python rag_engine.py)
+chromadb/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+

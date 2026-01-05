@@ -1,0 +1,99 @@
+APA CITATION GUIDE - Purdue OWL
+
+APA (American Psychological Association) style is most commonly used in the social sciences, education, and psychology fields.
+
+GENERAL FORMAT
+
+APA papers should be typed, double-spaced on standard-sized paper (8.5" x 11") with 1" margins on all sides. Use a clear font like 12 pt. Times New Roman or 11 pt. Arial. Include a page header (running head) at the top of every page.
+
+IN-TEXT CITATIONS
+
+APA uses an author-date citation system. After a quote or paraphrase, include the author's last name and year of publication in parentheses.
+
+Basic format: (Author, Year)
+With page number for direct quotes: (Author, Year, p. X)
+
+Examples:
+- According to Smith (2020), writing is essential.
+- Writing is essential (Smith, 2020).
+- "Writing is the foundation of communication" (Smith, 2020, p. 45).
+
+Multiple Authors:
+- Two authors: (Smith & Jones, 2020)
+- Three or more authors: (Smith et al., 2020)
+
+REFERENCE LIST
+
+The reference list appears at the end of your paper. It provides full publication information for all sources cited in the text.
+
+General Rules:
+- Start the reference list on a new page
+- Title it "References" (centered, bold)
+- Double-space all entries
+- Use a hanging indent (first line flush left, subsequent lines indented 0.5")
+- Alphabetize by author's last name
+
+BOOK CITATIONS
+
+Basic Format:
+Author, A. A. (Year). Title of work: Capital letter also for subtitle. Publisher.
+
+Example:
+Smith, J. D. (2020). The art of writing: A comprehensive guide. Academic Press.
+
+Edited Book:
+Editor, E. E. (Ed.). (Year). Title of book. Publisher.
+
+Chapter in Edited Book:
+Author, A. A. (Year). Title of chapter. In E. E. Editor (Ed.), Title of book (pp. xx-xx). Publisher.
+
+JOURNAL ARTICLE CITATIONS
+
+Basic Format:
+Author, A. A., & Author, B. B. (Year). Title of article. Title of Periodical, volume(issue), page-page. DOI or URL
+
+Example:
+Smith, J. D., & Jones, M. K. (2020). Understanding citation styles. Journal of Academic Writing, 15(3), 234-256. https://doi.org/10.1000/xyz123
+
+WEBSITE CITATIONS
+
+Basic Format:
+Author, A. A. (Year, Month Day). Title of page. Site Name. URL
+
+Example:
+Smith, J. (2020, March 15). How to cite sources properly. Writing Resources. https://www.example.com/citing-sources
+
+No Author:
+Title of page. (Year, Month Day). Site Name. URL
+
+No Date:
+Author, A. A. (n.d.). Title of page. Site Name. URL
+
+OTHER SOURCE TYPES
+
+Newspaper Article:
+Author, A. A. (Year, Month Day). Title of article. Newspaper Name. URL
+
+YouTube Video:
+Author, A. A. [Username]. (Year, Month Day). Title of video [Video]. YouTube. URL
+
+Podcast Episode:
+Host, A. A. (Host). (Year, Month Day). Episode title (No. X) [Audio podcast episode]. In Podcast name. Publisher. URL
+
+TIPS FOR APA FORMATTING
+
+1. Always include a DOI (Digital Object Identifier) when available for journal articles.
+2. Use sentence case for titles (capitalize only the first word and proper nouns).
+3. Italicize titles of books, journals, and other standalone works.
+4. Do not italicize article or chapter titles.
+5. Include retrieval dates only for sources that may change over time.
+6. When in doubt, provide more information rather than less.
+
+COMMON MISTAKES TO AVOID
+
+1. Forgetting the hanging indent in references
+2. Using title case instead of sentence case
+3. Missing the period at the end of reference entries
+4. Inconsistent formatting between similar source types
+5. Not matching in-text citations with reference list entries
+

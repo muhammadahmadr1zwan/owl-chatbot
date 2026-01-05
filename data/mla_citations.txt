@@ -1,0 +1,142 @@
+MLA CITATION GUIDE - Purdue OWL
+
+MLA (Modern Language Association) style is most commonly used in the humanities, especially in writing on language and literature.
+
+GENERAL FORMAT
+
+MLA papers should use:
+- Standard 8.5" x 11" paper
+- 1-inch margins on all sides
+- A legible font (e.g., 12 pt. Times New Roman)
+- Double-spacing throughout
+- A header with your last name and page number in the upper right corner
+
+First Page Setup:
+- Your name
+- Instructor's name
+- Course name
+- Date (Day Month Year format)
+- Centered title (no bold, underline, or italics unless required)
+
+IN-TEXT CITATIONS
+
+MLA uses author-page style for in-text citations. Include the author's last name and page number(s) in parentheses.
+
+Basic format: (Author Page)
+
+Examples:
+- According to Smith, "writing is essential" (45).
+- "Writing is essential" (Smith 45).
+- The author argues that writing matters (Smith 45-47).
+
+No Author:
+Use a shortened version of the title: ("Article Title" 45)
+
+Multiple Authors:
+- Two authors: (Smith and Jones 45)
+- Three or more authors: (Smith et al. 45)
+
+WORKS CITED PAGE
+
+The Works Cited page appears at the end of your paper and lists all sources cited.
+
+General Rules:
+- Start on a new page
+- Title it "Works Cited" (centered, not bold)
+- Double-space all entries
+- Use a hanging indent (first line flush left, subsequent lines indented 0.5")
+- Alphabetize by author's last name (or title if no author)
+
+MLA CORE ELEMENTS
+
+MLA 9th edition uses nine core elements in this order:
+1. Author.
+2. Title of source.
+3. Title of container,
+4. Contributors,
+5. Version,
+6. Number,
+7. Publisher,
+8. Publication date,
+9. Location.
+
+BOOK CITATIONS
+
+Basic Format:
+Author Last Name, First Name. Title of Book. Publisher, Year.
+
+Example:
+Smith, John. The Art of Writing. Academic Press, 2020.
+
+Two Authors:
+Smith, John, and Mary Jones. Writing Together. Publisher, Year.
+
+Three or More Authors:
+Smith, John, et al. Collaborative Writing. Publisher, Year.
+
+Edited Book:
+Editor Last Name, First Name, editor. Title of Book. Publisher, Year.
+
+Chapter in Edited Book:
+Author Last Name, First Name. "Title of Chapter." Title of Book, edited by First Name Last Name, Publisher, Year, pp. X-X.
+
+JOURNAL ARTICLE CITATIONS
+
+Basic Format:
+Author Last Name, First Name. "Title of Article." Journal Name, vol. X, no. X, Year, pp. X-X.
+
+With DOI:
+Author Last Name, First Name. "Title of Article." Journal Name, vol. X, no. X, Year, pp. X-X. DOI.
+
+Example:
+Smith, John. "Understanding Citations." Journal of Writing, vol. 15, no. 3, 2020, pp. 234-256. https://doi.org/10.1000/xyz123.
+
+WEBSITE CITATIONS
+
+Basic Format:
+Author Last Name, First Name. "Title of Page." Website Name, Publisher, Day Month Year, URL.
+
+Example:
+Smith, John. "How to Cite Sources." Writing Resources, Academic Press, 15 Mar. 2020, www.example.com/citing.
+
+No Author:
+"Title of Page." Website Name, Publisher, Day Month Year, URL.
+
+No Date:
+Author Last Name, First Name. "Title of Page." Website Name, URL. Accessed Day Month Year.
+
+OTHER SOURCE TYPES
+
+Newspaper Article (Print):
+Author. "Title of Article." Newspaper Name, Day Month Year, pp. X-X.
+
+Newspaper Article (Online):
+Author. "Title of Article." Newspaper Name, Day Month Year, URL.
+
+YouTube Video:
+"Title of Video." YouTube, uploaded by Username, Day Month Year, URL.
+
+Podcast Episode:
+"Episode Title." Podcast Name, hosted by Host Name, Publisher, Day Month Year, URL.
+
+Interview:
+Last Name, First Name. Interview. Conducted by Interviewer Name, Day Month Year.
+
+FORMATTING TIPS
+
+1. Italicize titles of books, journals, websites, and other standalone works.
+2. Use quotation marks for titles of articles, chapters, and other shorter works.
+3. Use title case for all titles (capitalize major words).
+4. Include URLs without "http://" or "https://" unless needed for clarity.
+5. Abbreviate months longer than four letters (Jan., Feb., Mar., Apr., Aug., Sept., Oct., Nov., Dec.).
+6. Use "p." for one page and "pp." for multiple pages.
+
+COMMON MISTAKES TO AVOID
+
+1. Using a period instead of a comma after container titles
+2. Forgetting the hanging indent
+3. Putting URLs in angle brackets (no longer required)
+4. Using incorrect date format (MLA uses Day Month Year)
+5. Not matching in-text citations with Works Cited entries
+6. Forgetting to italicize or use quotation marks for titles
+
