@@ -130,6 +130,42 @@ def search(query: str, vectorstore: Chroma, k: int = 3) -> list:
     return results
 
 
+# Global database instance (loaded once)
+_db = None
+
+
+def get_database() -> Chroma:
+    """Get or load the database (singleton pattern)."""
+    global _db
+    if _db is None:
+        _db = load_database()
+    return _db
+
+
+def retrieve_context(query: str, k: int = 3) -> str:
+    """
+    Main retrieval function: Find relevant context for a user query.
+    
+    Args:
+        query: User's question (e.g., "How do I cite a book?")
+        k: Number of chunks to retrieve
+        
+    Returns:
+        Combined text from the most relevant document chunks
+    """
+    db = get_database()
+    results = search(query, db, k=k)
+    
+    # Combine the retrieved chunks into a single context string
+    context_parts = []
+    for i, doc in enumerate(results, 1):
+        source = doc.metadata.get("source", "Unknown")
+        context_parts.append(f"[Source {i}: {source}]\n{doc.page_content}")
+    
+    context = "\n\n---\n\n".join(context_parts)
+    return context
+
+
 # Run this script directly to build the database
 if __name__ == "__main__":
     print("Building Purdue OWL knowledge base...")
