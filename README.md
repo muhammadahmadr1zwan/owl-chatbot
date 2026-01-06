@@ -1,4 +1,4 @@
-# <img width="262" height="148" alt="download" src="https://github.com/user-attachments/assets/2131f5be-41d3-445e-8286-340fdc7315ad" /> Purdue OWL Chatbot
+# ![purdue_boilermakers_2012-pres](https://github.com/user-attachments/assets/6f2ddfe5-156b-4e59-8a5a-ad004eb53886) Purdue OWL Chatbot
 
 
 A smart chatbot that helps students find and understand Purdue OWL writing resources. Ask questions about citations, formatting, and academic writing - get instant answers from the OWL knowledge base.
