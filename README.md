@@ -1,4 +1,5 @@
-# 🦉 Purdue OWL Chatbot
+# <img width="262" height="148" alt="download" src="https://github.com/user-attachments/assets/2131f5be-41d3-445e-8286-340fdc7315ad" /> Purdue OWL Chatbot
+
 
 A smart chatbot that helps students find and understand Purdue OWL writing resources. Ask questions about citations, formatting, and academic writing - get instant answers from the OWL knowledge base.
 
