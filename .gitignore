@@ -13,6 +13,6 @@ venv/
 .vscode/
 .idea/
 
-# Streamlit credentials (keep config.toml)
-.streamlit/credentials.toml
+# Streamlit local config (for local dev only)
+.streamlit/
 
