@@ -142,7 +142,7 @@ def get_database() -> Chroma:
     return _db
 
 
-def retrieve_context(query: str, k: int = 3) -> str:
+def retrieve_context(query: str, k: int = 3) -> tuple:
     """
     Main retrieval function: Find relevant context for a user query.
     
@@ -151,19 +151,28 @@ def retrieve_context(query: str, k: int = 3) -> str:
         k: Number of chunks to retrieve
         
     Returns:
-        Combined text from the most relevant document chunks
+        Tuple of (context_string, sources_list)
+        - context_string: Combined text from relevant chunks
+        - sources_list: List of unique source files used
     """
     db = get_database()
     results = search(query, db, k=k)
     
-    # Combine the retrieved chunks into a single context string
+    # Track unique sources
+    sources_set = set()
     context_parts = []
+    
     for i, doc in enumerate(results, 1):
-        source = doc.metadata.get("source", "Unknown")
-        context_parts.append(f"[Source {i}: {source}]\n{doc.page_content}")
+        source_path = doc.metadata.get("source", "Unknown")
+        # Extract just the filename from the path
+        source_name = source_path.replace("\\", "/").split("/")[-1].replace(".txt", "").replace("_", " ").title()
+        sources_set.add(source_name)
+        context_parts.append(f"[Source {i}: {source_name}]\n{doc.page_content}")
     
     context = "\n\n---\n\n".join(context_parts)
-    return context
+    sources = list(sources_set)
+    
+    return context, sources
 
 
 # Run this script directly to build the database

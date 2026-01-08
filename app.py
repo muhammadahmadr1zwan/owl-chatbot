@@ -71,6 +71,19 @@ st.markdown("""
         border: 1px solid #ffa500;
         color: #ffa500;
     }
+    .owl-link {
+        display: block;
+        padding: 0.5rem 0.8rem;
+        margin: 0.3rem 0;
+        background: rgba(206, 184, 136, 0.1);
+        border-radius: 5px;
+        color: #CEB888 !important;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+    .owl-link:hover {
+        background: rgba(206, 184, 136, 0.2);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -84,9 +97,18 @@ If the answer is not in the context, say "I don't have that specific information
 Context:
 {context}"""
 
+# Source to OWL URL mapping
+SOURCE_LINKS = {
+    "Apa Citations": "https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html",
+    "Mla Citations": "https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_general_format.html",
+    "Email Etiquette": "https://owl.purdue.edu/owl/subject_specific_writing/professional_technical_writing/basic_business_letters/index.html",
+}
+
 # Initialize session state
 if "messages" not in st.session_state:
     st.session_state.messages = []
+if "sources_history" not in st.session_state:
+    st.session_state.sources_history = []
 
 # Sidebar
 with st.sidebar:
@@ -132,9 +154,29 @@ with st.sidebar:
     
     st.markdown("---")
     
+    # OWL Resource Links
+    st.markdown("### 🔗 Need More? Visit OWL")
+    st.markdown("""
+    <a href="https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html" target="_blank" class="owl-link">
+        📄 APA Style Guide
+    </a>
+    <a href="https://owl.purdue.edu/owl/research_and_citation/mla_style/mla_formatting_and_style_guide/mla_general_format.html" target="_blank" class="owl-link">
+        📄 MLA Style Guide
+    </a>
+    <a href="https://owl.purdue.edu/owl/subject_specific_writing/professional_technical_writing/basic_business_letters/index.html" target="_blank" class="owl-link">
+        ✉️ Professional Writing
+    </a>
+    <a href="https://owl.purdue.edu/" target="_blank" class="owl-link">
+        🦉 Full OWL Website
+    </a>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
     # Reset chat button
     if st.button("🔄 Reset Chat", use_container_width=True):
         st.session_state.messages = []
+        st.session_state.sources_history = []
         st.rerun()
     
     st.markdown("---")
@@ -150,9 +192,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Display chat history (Session State handling)
-for message in st.session_state.messages:
+for i, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
+        
+        # Show sources expander for assistant messages
+        if message["role"] == "assistant" and i // 2 < len(st.session_state.sources_history):
+            sources = st.session_state.sources_history[i // 2]
+            if sources:
+                with st.expander("📚 View Sources"):
+                    for source in sources:
+                        link = SOURCE_LINKS.get(source, "https://owl.purdue.edu")
+                        st.markdown(f"• **{source}** - [View on OWL]({link})")
 
 
 def clean_context(context: str) -> str:
@@ -213,8 +264,8 @@ if prompt := st.chat_input("Ask about citations, formatting, or email etiquette.
         # Show "Thinking..." spinner while processing
         with st.spinner("🦉 Thinking..."):
             try:
-                # Step 1: Retrieve relevant context
-                context = retrieve_context(prompt)
+                # Step 1: Retrieve relevant context AND sources
+                context, sources = retrieve_context(prompt)
                 cleaned_context = clean_context(context)
                 
                 # Step 2: Generate response with LLM (if API key provided)
@@ -231,8 +282,16 @@ if prompt := st.chat_input("Ask about citations, formatting, or email etiquette.
                 
                 st.markdown(response)
                 
-                # Add assistant response to history
+                # Show sources expander
+                if sources:
+                    with st.expander("📚 View Sources"):
+                        for source in sources:
+                            link = SOURCE_LINKS.get(source, "https://owl.purdue.edu")
+                            st.markdown(f"• **{source}** - [View on OWL]({link})")
+                
+                # Add to history
                 st.session_state.messages.append({"role": "assistant", "content": response})
+                st.session_state.sources_history.append(sources)
                 
             except Exception as e:
                 error_msg = f"⚠️ Error: {str(e)}"
@@ -245,3 +304,4 @@ if prompt := st.chat_input("Ask about citations, formatting, or email etiquette.
                 
                 st.error(error_msg)
                 st.session_state.messages.append({"role": "assistant", "content": error_msg})
+                st.session_state.sources_history.append([])
