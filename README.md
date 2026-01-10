@@ -11,26 +11,31 @@ A smart chatbot that helps students find and understand Purdue OWL writing resou
 ### Main Interface
 The chatbot features a clean, dark-themed UI with Purdue gold accents. The sidebar includes API configuration, helpful links to OWL resources, and information about what the bot can help with.
 
-![Home Screen](https://github.com/user-attachments/assets/home-screen.png)
+<img width="237" height="792" alt="Attached_image" src="https://github.com/user-attachments/assets/b8e28a47-4cd3-463f-bea5-3d135a308744" />
+<img width="237" height="792" alt="Attached_image1" src="https://github.com/user-attachments/assets/a7403b04-81ef-4948-bb96-4e5aa0c7c37c" />
+
 
 ### Citation Assistance
 Ask any citation-related question and get detailed, accurate responses pulled directly from Purdue OWL content.
 
 **Example:** "How do I cite a book in APA?"
 
-![Citation Response](https://github.com/user-attachments/assets/citation-response.png)
+<img width="966" height="768" alt="Attached_image2" src="https://github.com/user-attachments/assets/1fd6476b-efaa-4de1-96b5-c7953e9c1b47" />
+
 
 ### Source Tracking
 Every response includes a "View Sources" dropdown showing which OWL resources were used to generate the answer, with direct links to the full OWL pages.
 
-![Source Dropdown](https://github.com/user-attachments/assets/source-dropdown.png)
+<img width="731" height="232" alt="Attached_image4" src="https://github.com/user-attachments/assets/03d542da-a8ae-43d5-b73e-12437b898a83" />
+
 
 ### Off-Topic Protection
 The bot is designed to stay focused on writing topics. Off-topic questions (cooking, math, etc.) are politely declined.
 
 **Example:** "How do I make pasta?" → Redirects user to writing topics
 
-![Off-Topic Refusal](https://github.com/user-attachments/assets/off-topic-refusal.png)
+<img width="866" height="481" alt="Attached_image5" src="https://github.com/user-attachments/assets/d3062a78-1046-4115-baa8-69a637ba759e" />
+
 
 ## 🏗️ Architecture
 
