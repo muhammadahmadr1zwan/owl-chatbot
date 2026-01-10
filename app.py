@@ -88,11 +88,25 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # System prompt for the AI
-SYSTEM_PROMPT = """You are a helpful writing tutor at Purdue University. You assist students with citations, formatting, and academic writing questions.
+SYSTEM_PROMPT = """You are a helpful writing tutor at Purdue University. You ONLY assist students with:
+- Citations (APA, MLA, Chicago, etc.)
+- Academic writing and formatting
+- Professional email etiquette
+- Grammar and style questions
 
-Answer questions using ONLY the provided context below. Be concise, friendly, and helpful. Format your responses clearly with examples when appropriate.
-
-If the answer is not in the context, say "I don't have that specific information in my current database. Please check the full Purdue OWL website at owl.purdue.edu for more details."
+IMPORTANT RULES:
+1. Answer questions using ONLY the provided context below.
+2. Be concise, friendly, and helpful. Format your responses clearly with examples when appropriate.
+3. If the answer is not in the context, say "I don't have that specific information in my current database. Please check the full Purdue OWL website at owl.purdue.edu for more details."
+4. REFUSE to answer questions that are NOT related to writing, citations, or academic communication. This includes:
+   - Cooking recipes
+   - Math problems
+   - Science questions
+   - General knowledge
+   - Programming help
+   - Any other non-writing topics
+   
+   For off-topic questions, politely respond: "I'm the Purdue OWL Writing Assistant, and I can only help with writing, citations, and academic communication. For other topics, please use a different resource. Is there anything writing-related I can help you with?"
 
 Context:
 {context}"""
@@ -215,6 +229,69 @@ def clean_context(context: str) -> str:
     return cleaned.strip()
 
 
+def is_writing_related(query: str) -> bool:
+    """
+    Check if a query is related to writing, citations, or academic communication.
+    Returns True if the query seems on-topic, False otherwise.
+    """
+    query_lower = query.lower()
+    
+    # Writing-related keywords
+    writing_keywords = [
+        'cite', 'citation', 'reference', 'bibliography', 'works cited',
+        'apa', 'mla', 'chicago', 'format', 'formatting',
+        'essay', 'paper', 'write', 'writing', 'paragraph',
+        'email', 'professional', 'letter', 'communication',
+        'grammar', 'punctuation', 'style', 'academic',
+        'source', 'quote', 'quotation', 'paraphrase',
+        'thesis', 'introduction', 'conclusion', 'body',
+        'in-text', 'footnote', 'endnote', 'annotation',
+        'bibliography', 'research', 'journal', 'article',
+        'book', 'author', 'publisher', 'doi', 'url',
+        'heading', 'title page', 'abstract', 'outline'
+    ]
+    
+    # Off-topic keywords (red flags)
+    offtopic_keywords = [
+        # Food/cooking
+        'recipe', 'cook', 'food', 'eat', 'ingredient', 'pasta', 'pizza', 'chicken', 
+        'bake', 'fry', 'boil', 'dinner', 'lunch', 'breakfast', 'meal', 'dish',
+        # Math
+        'math', 'calculate', 'equation', 'solve', '2+2', '1+1', 'add', 'subtract', 
+        'multiply', 'divide', 'algebra', 'calculus', 'geometry', 'sum', 'equals',
+        # Programming/tech
+        'code', 'programming', 'python', 'javascript', 'java', 'function', 'variable',
+        'debug', 'compile', 'software', 'app', 'website', 'html', 'css', 'sql',
+        # Weather
+        'weather', 'temperature', 'forecast', 'rain', 'snow', 'sunny',
+        # Entertainment
+        'movie', 'music', 'song', 'game', 'sport', 'play', 'watch', 'netflix',
+        # Health
+        'health', 'medical', 'symptom', 'disease', 'doctor', 'medicine', 'sick',
+        # Travel
+        'travel', 'hotel', 'flight', 'vacation', 'trip', 'tourist',
+        # News/politics
+        'news', 'politics', 'election', 'president', 'congress',
+        # General off-topic
+        'joke', 'funny', 'tell me about', 'what is', 'who is', 'where is',
+        'how do i make', 'how to make', 'can you make'
+    ]
+    
+    # Check for off-topic keywords first
+    for keyword in offtopic_keywords:
+        if keyword in query_lower:
+            return False
+    
+    # Check for writing-related keywords
+    for keyword in writing_keywords:
+        if keyword in query_lower:
+            return True
+    
+    # Default: assume it might be writing-related if no clear indicators
+    # (let the LLM handle edge cases if API key is provided)
+    return True
+
+
 def generate_response(user_query: str, context: str, api_key: str) -> str:
     """
     Generate a response using the Purdue GenAI API.
@@ -272,13 +349,29 @@ if prompt := st.chat_input("Ask about citations, formatting, or email etiquette.
                 if api_key:
                     response = generate_response(prompt, cleaned_context, api_key)
                 else:
-                    # Fallback: Just show retrieved context if no API key
-                    response = f"""**Here's what I found from the Purdue OWL:**
+                    # Fallback: Check if question is writing-related before showing context
+                    if is_writing_related(prompt):
+                        response = f"""**Here's what I found from the Purdue OWL:**
 
 {cleaned_context}
 
 ---
 *💡 Tip: Add your Purdue API key in the sidebar for smarter AI-powered responses!*"""
+                    else:
+                        # Off-topic question - refuse politely
+                        response = """🦉 **I'm the Purdue OWL Writing Assistant!**
+
+I can only help with **writing-related topics** such as:
+- 📝 Citations (APA, MLA, Chicago)
+- ✍️ Academic writing and formatting
+- ✉️ Professional email etiquette
+- 📖 Grammar and style questions
+
+Your question doesn't seem to be about writing. Is there anything writing-related I can help you with?
+
+---
+*For other topics, please use a different resource.*"""
+                        sources = []  # No sources for off-topic responses
                 
                 st.markdown(response)
                 

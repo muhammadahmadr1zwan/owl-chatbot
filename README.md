@@ -1,11 +1,65 @@
 # ![purdue_boilermakers_2012-pres](https://github.com/user-attachments/assets/6f2ddfe5-156b-4e59-8a5a-ad004eb53886) Purdue OWL Chatbot
 
-
 A smart chatbot that helps students find and understand Purdue OWL writing resources. Ask questions about citations, formatting, and academic writing - get instant answers from the OWL knowledge base.
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.0+-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           PURDUE OWL CHATBOT                                │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌──────────────┐    ┌──────────────────┐    ┌────────────────────────┐    │
+│  │              │    │                  │    │                        │    │
+│  │   FRONTEND   │───▶│   RAG ENGINE     │───▶│   PURDUE GENAI API     │    │
+│  │  (Streamlit) │    │  (LangChain +    │    │   (Anvil/RCAC)         │    │
+│  │              │◀───│   ChromaDB)      │◀───│   llama-3-70b-instruct │    │
+│  └──────────────┘    └──────────────────┘    └────────────────────────┘    │
+│         │                    │                                              │
+│         │                    ▼                                              │
+│         │           ┌──────────────────┐                                   │
+│         │           │   KNOWLEDGE BASE │                                   │
+│         │           │   (Vector Store) │                                   │
+│         │           │                  │                                   │
+│         │           │  • APA Citations │                                   │
+│         │           │  • MLA Citations │                                   │
+│         │           │  • Email Guide   │                                   │
+│         │           └──────────────────┘                                   │
+│         │                                                                   │
+│         ▼                                                                   │
+│  ┌──────────────┐                                                          │
+│  │     USER     │                                                          │
+│  │   BROWSER    │                                                          │
+│  └──────────────┘                                                          │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Data Flow
+
+1. **User Query** → User asks a writing question via the Streamlit interface
+2. **Retrieval** → RAG Engine searches ChromaDB for relevant OWL content chunks
+3. **Context + Query** → Retrieved context is sent to Purdue GenAI API with the user's question
+4. **AI Response** → LLM generates a helpful, context-aware response
+5. **Display** → Response shown to user with source citations
+
+## 🔐 Purdue GenAI Integration
+
+We utilize the **Purdue GenAI Studio API** (hosted on RCAC Anvil infrastructure) to ensure:
+
+- **Data Privacy** - All queries stay within Purdue's secure infrastructure
+- **Low Latency** - Local servers provide fast response times
+- **RCAC Compliance** - Adheres to Research Computing guidelines
+- **No External Data Sharing** - Student queries are not sent to external AI providers
+
+**API Endpoint:** `https://genai.rcac.purdue.edu/api`  
+**Model:** `llama-3-70b-instruct`
+
+To use the AI features, obtain an API key from [GenAI Studio](https://genai.rcac.purdue.edu) using your Purdue credentials.
 
 ## 📋 Features
 
@@ -13,6 +67,8 @@ A smart chatbot that helps students find and understand Purdue OWL writing resou
 - **MLA Citations** - Works Cited entries and parenthetical citations  
 - **Email Etiquette** - Professional communication tips for students
 - **RAG-Powered** - Uses retrieval-augmented generation for accurate answers
+- **Source Tracking** - See which OWL resources were used for each answer
+- **Writing-Focused** - Refuses off-topic questions (cooking, math, etc.)
 
 ## 🚀 Quick Start
 
@@ -20,6 +76,7 @@ A smart chatbot that helps students find and understand Purdue OWL writing resou
 
 - Python 3.8 or higher
 - pip (Python package manager)
+- Purdue GenAI API key (optional, but recommended)
 
 ### Installation
 
@@ -60,11 +117,15 @@ A smart chatbot that helps students find and understand Purdue OWL writing resou
    
    Navigate to `http://localhost:8501`
 
+7. **Enter your API key** (optional)
+   
+   Add your Purdue GenAI API key in the sidebar for AI-powered responses.
+
 ## 📁 Project Structure
 
 ```
 owl-chatbot/
-├── app.py              # Streamlit frontend
+├── app.py              # Streamlit frontend + LLM integration
 ├── rag_engine.py       # RAG backend (ingestion + retrieval)
 ├── data/               # Purdue OWL content files
 │   ├── apa_citations.txt
@@ -73,25 +134,44 @@ owl-chatbot/
 ├── assets/             # Images and static files
 │   └── purdue_logo.png
 ├── chromadb/           # Vector database (generated)
-├── .streamlit/         # Streamlit configuration
 ├── requirements.txt    # Python dependencies
 └── README.md
 ```
 
 ## 🛠️ How It Works
 
-1. **Data Ingestion** - Text files in `/data` are split into chunks and converted to vectors
-2. **Vector Storage** - ChromaDB stores the embeddings locally
-3. **Retrieval** - User questions are matched against the knowledge base
-4. **Response** - Relevant content is returned to answer the question
+| Step | Component | Description |
+|------|-----------|-------------|
+| 1 | **Data Ingestion** | Text files in `/data` are split into chunks and converted to vectors |
+| 2 | **Vector Storage** | ChromaDB stores the embeddings locally |
+| 3 | **Retrieval** | User questions are matched against the knowledge base using semantic search |
+| 4 | **LLM Generation** | Purdue GenAI API generates responses using retrieved context |
+| 5 | **Source Citation** | Sources are tracked and displayed with each response |
 
 ## 📦 Dependencies
 
-- `streamlit` - Web interface
-- `langchain` - Text processing and RAG framework
-- `chromadb` - Vector database
-- `sentence-transformers` - Text embeddings (HuggingFace)
-- `openai` - LLM integration (for future use)
+| Package | Purpose |
+|---------|---------|
+| `streamlit` | Web interface |
+| `langchain` | Text processing and RAG framework |
+| `chromadb` | Vector database |
+| `sentence-transformers` | Text embeddings (HuggingFace) |
+| `openai` | API client for Purdue GenAI |
+
+## 🔒 Security & Privacy
+
+- API keys are entered client-side and never stored
+- All LLM queries go through Purdue's secure RCAC infrastructure
+- No student data is sent to external services
+- Knowledge base is built from publicly available OWL content
+
+## 🧪 Testing
+
+The chatbot is designed to **only answer writing-related questions**. It will politely decline:
+- Cooking recipes
+- Math problems
+- General knowledge questions
+- Any non-writing topics
 
 ## 🤝 Contributing
 
@@ -108,8 +188,9 @@ This project is for educational purposes as part of Purdue University coursework
 ## 🙏 Acknowledgments
 
 - [Purdue Online Writing Lab (OWL)](https://owl.purdue.edu) - Source content
-- Purdue University - GenAI resources
+- [Purdue RCAC](https://www.rcac.purdue.edu/) - GenAI infrastructure
+- [GenAI Studio](https://genai.rcac.purdue.edu) - API access
 
 ---
 
-**Built by Purdue Students** 🚂
+**Built by Purdue Students** 🚂 | CS 390 Project
