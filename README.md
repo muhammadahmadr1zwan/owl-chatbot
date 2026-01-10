@@ -6,6 +6,32 @@ A smart chatbot that helps students find and understand Purdue OWL writing resou
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.0+-red.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
+## 📸 Demo
+
+### Main Interface
+The chatbot features a clean, dark-themed UI with Purdue gold accents. The sidebar includes API configuration, helpful links to OWL resources, and information about what the bot can help with.
+
+![Home Screen](https://github.com/user-attachments/assets/home-screen.png)
+
+### Citation Assistance
+Ask any citation-related question and get detailed, accurate responses pulled directly from Purdue OWL content.
+
+**Example:** "How do I cite a book in APA?"
+
+![Citation Response](https://github.com/user-attachments/assets/citation-response.png)
+
+### Source Tracking
+Every response includes a "View Sources" dropdown showing which OWL resources were used to generate the answer, with direct links to the full OWL pages.
+
+![Source Dropdown](https://github.com/user-attachments/assets/source-dropdown.png)
+
+### Off-Topic Protection
+The bot is designed to stay focused on writing topics. Off-topic questions (cooking, math, etc.) are politely declined.
+
+**Example:** "How do I make pasta?" → Redirects user to writing topics
+
+![Off-Topic Refusal](https://github.com/user-attachments/assets/off-topic-refusal.png)
+
 ## 🏗️ Architecture
 
 ```
