@@ -10,7 +10,7 @@ A smart chatbot that helps students find and understand Purdue OWL writing resou
 
 ### Main Interface
 The chatbot features a clean, dark-themed UI with Purdue gold accents. The sidebar includes API configuration, helpful links to OWL resources, and information about what the bot can help with.
-
+<img width="2555" height="951" alt="Attached_image" src="https://github.com/user-attachments/assets/94fac0c9-86c3-4a32-abef-b857bc3b0cbe" />
 <img width="237" height="792" alt="Attached_image" src="https://github.com/user-attachments/assets/b8e28a47-4cd3-463f-bea5-3d135a308744" />
 
 
@@ -18,7 +18,6 @@ The chatbot features a clean, dark-themed UI with Purdue gold accents. The sideb
 Ask any citation-related question and get detailed, accurate responses pulled directly from Purdue OWL content.
 
 **Example:** "How do I cite a book in APA?"
-<img width="2555" height="951" alt="Attached_image" src="https://github.com/user-attachments/assets/94fac0c9-86c3-4a32-abef-b857bc3b0cbe" />
 <img width="966" height="768" alt="Attached_image2" src="https://github.com/user-attachments/assets/1fd6476b-efaa-4de1-96b5-c7953e9c1b47" />
 
 
